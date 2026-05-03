@@ -17,7 +17,11 @@ export function ProductCard({
 }: ProductCardProps) {
   return (
     <article className="panel product-card">
-      <ProductImage src={product.image ?? undefined} alt={product.name} category={product.category} />
+      <ProductImage
+        src={product.image ? `products/image/${product.image}` : undefined}
+        alt={product.name}
+        category={product.category}
+      />
 
       <div className="product-top">
         <span className="tag">{product.category}</span>

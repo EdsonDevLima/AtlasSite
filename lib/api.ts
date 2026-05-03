@@ -82,14 +82,11 @@ export async function login(email: string, password: string) {
 
     return { token: result.token, user, mode: "api" as const };
   } catch {
-    if (email && password) {
-      return {
-        token: "demo-token",
-        user: { id: 1, name: "Demo Atlas", email, role: "admin" },
-        mode: "demo" as const,
-      };
-    }
-    throw new Error("Nao foi possivel autenticar");
+    return {
+      token: "mock-token",
+      user: { id: 1, name: "Cliente Atlas", email, role: "customer" },
+      mode: "mock" as const,
+    };
   }
 }
 
@@ -147,10 +144,10 @@ export async function createOrder(payload: {
       created_at: new Date().toISOString(),
       total: payload.total,
       status: "pending",
-      trackingCode: payload.trackingCode ?? "DEMO",
+      trackingCode: payload.trackingCode ?? "ATL-MOCK",
       user: mockCustomers[0],
       products: mockProducts.filter((item) => payload.productIds.includes(item.id)),
-    } satisfies Order;
+    };
   }
 }
 
@@ -174,6 +171,14 @@ export async function syncProductStock(orderItems: Array<{ product: Product; qua
 
 export function getProductImageUrl(image?: string | null) {
   if (!image) return null;
+  if (image.startsWith("http://") || image.startsWith("https://")) {
+    return image;
+  }
+
+  if (image.startsWith("products/image/")) {
+    return `${baseURL}/${image}`;
+  }
+
   return `${baseURL}/products/image/${image}`;
 }
 

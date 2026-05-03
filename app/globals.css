@@ -94,16 +94,12 @@ select {
   color: white;
 }
 
-.brand-badge {
+.brand-badge,
+.brand-logo {
   width: 44px;
   height: 44px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  background: var(--primary);
-  color: white;
-  font-weight: 700;
-  font-size: 1.1rem;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .brand-mark strong,

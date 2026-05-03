@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
+import Image from "next/image";
 
 const links = [
   { href: "/", label: "Ofertas" },
@@ -18,7 +19,14 @@ export function AppShell({ children }: { children: ReactNode }) {
       <header className="topbar">
         <div className="topbar-inner">
           <Link href="/" className="brand-mark">
-            <span className="brand-badge">A</span>
+            <Image
+              src="/logo.png"
+              alt="Atlas Mercado"
+              width={44}
+              height={44}
+              className="brand-logo"
+              priority
+            />
             <div>
               <strong>Atlas Mercado</strong>
               <span>Compre mercadorias online</span>
