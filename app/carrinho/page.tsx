@@ -79,59 +79,6 @@ export default function CarrinhoPage() {
           <h2>Revise seus produtos e finalize a compra</h2>
         </div>
       </section>
-
-      <section className="panel form-grid">
-        <div className="section-head">
-          <div>
-            <p className="eyebrow">Entrega</p>
-            <h2>Dados para entrega</h2>
-          </div>
-        </div>
-
-        <label>
-          Nome completo
-          <input value={name} onChange={(event) => setName(event.target.value)} />
-        </label>
-
-        <label>
-          Email
-          <input
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </label>
-
-        <label>
-          Rua
-          <input value={street} onChange={(event) => setStreet(event.target.value)} />
-        </label>
-
-        <div className="double-grid">
-          <label>
-            Numero
-            <input value={number} onChange={(event) => setNumber(event.target.value)} />
-          </label>
-
-          <label>
-            CEP
-            <input value={zipCode} onChange={(event) => setZipCode(event.target.value)} />
-          </label>
-        </div>
-
-        <div className="double-grid">
-          <label>
-            Cidade
-            <input value={city} onChange={(event) => setCity(event.target.value)} />
-          </label>
-
-          <label>
-            Estado
-            <input value={state} onChange={(event) => setState(event.target.value)} />
-          </label>
-        </div>
-      </section>
-
       <section className="panel cart-panel">
         {items.length === 0 ? (
           <p>Nenhum item no carrinho ainda. Adicione produtos na listagem.</p>

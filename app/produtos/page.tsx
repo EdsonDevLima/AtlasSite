@@ -11,7 +11,8 @@ export default function ProdutosPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("todos");
-  const { addItem } = useCart();
+  const { addItem,items } = useCart();
+
 
   useEffect(() => {
     void fetchProducts().then(setProducts);
@@ -67,7 +68,7 @@ export default function ProdutosPage() {
 
       <section className="market-grid">
         {filtered.map((product) => (
-          <ProductCard key={product.id} product={product} onAdd={addItem} />
+          <ProductCard key={product.id} product={product} onAdd={addItem} items={items} />
         ))}
       </section>
     </AppShell>

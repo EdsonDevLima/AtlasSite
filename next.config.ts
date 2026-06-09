@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    domains: ["mecaluxbr.cdnwm.com"],
     remotePatterns: [
       {
         protocol: "http",

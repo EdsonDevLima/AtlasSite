@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 import Image from "next/image";
+import { useCart } from "@/hooks/use-cart";
 
 const links = [
   { href: "/", label: "Ofertas" },
@@ -13,6 +14,7 @@ const links = [
 
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const { items } = useCart();
 
   return (
     <div className="market-shell">
@@ -39,8 +41,19 @@ export function AppShell({ children }: { children: ReactNode }) {
                 key={link.href}
                 href={link.href}
                 className={pathname === link.href ? "active" : ""}
+                style={{position:"relative"}}
               >
                 {link.label}
+                {link.label == "Carrinho" && items.length > 0 && <span style={{
+                  backgroundColor: "red",
+                  color: "white",
+                  borderRadius: "50%",
+                  padding: "2px 6px",
+                  fontSize: "12px",
+                  position:"absolute",
+                  top:"1px"
+
+                }} >{items.length}</span>}
               </Link>
             ))}
           </nav>
