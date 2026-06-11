@@ -21,7 +21,9 @@ export function useAuth() {
     setUser(result.user);
     return result;
   }
-
+  async function register(pemail: string, password: string) {
+    
+  }
   function logout() {
     storage.clearToken();
     storage.clearUser();

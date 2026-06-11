@@ -89,6 +89,30 @@ export async function login(email: string, password: string) {
     };
   }
 }
+export async function register(email: string, password: string,confirmPassword:string) {
+  try {
+    const result = await request<{ token: string }>("auth/create", {
+      method: "POST",
+      body: JSON.stringify({ email, password,confirmPassword }),
+    });
+
+    const payload = parseJwt(result.token);
+    const user: AuthUser = {
+      id: payload.sub ?? 1,
+      name: email.split("@")[0],
+      email,
+      role: payload.role,
+    };
+
+    return { token: result.token, user, mode: "api" as const };
+  } catch {
+    return {
+      token: "mock-token",
+      user: { id: 1, name: "Cliente Atlas", email, role: "customer" },
+      mode: "mock" as const,
+    };
+  }
+}
 
 export async function fetchProducts(): Promise<Product[]> {
   try {
