@@ -107,7 +107,8 @@ export default function CarrinhoPage() {
 
     try {
       // Replace with your real API call, e.g.: const res = await getOrdersByEmail(lookupEmail)
-      const res = await fetch(`/sales?email=${encodeURIComponent(lookupEmail)}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000"}/user/order?email=${encodeURIComponent(lookupEmail)}`,{headers:{"api-key":process.env.NEXT_PUBLIC_SERVER_API_KEY || "","content-type":"json/application"}});
+      
       if (!res.ok) throw new Error("Nenhum pedido encontrado para este e-mail.");
       const data: Order[] = await res.json();
       setOrders(data);
